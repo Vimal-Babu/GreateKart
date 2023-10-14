@@ -1,0 +1,51 @@
+{% extends 'Admin/adminlayouts/main.html' %}
+{% block title %}product{% endblock title %}
+{% load static %}
+
+{% block body %}
+<div class="card">
+  <div class="card-header">
+    <h4>User List</h4>
+  </div>
+<div class="container-md main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="search-bar">
+        <form method="GET" action="{% url 'user'%}">
+          <!-- Your form content here -->
+        </form>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
+            <th scope="col">Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for d in all_users %}
+          <tr>
+            <th scope="row">{{d.id}}</th>
+            <td>{{d.first_name}}</td>
+            <td>{{d.email}}</td>
+            <td>
+              {% if d.is_active %}
+              <a href="{% url 'user_block' d.id %}" class="btn btn-outline-danger mx-1">Block</a>
+              {% else %}
+              <a href="{% url 'user_unblock' d.id %}" class="btn btn-outline-success mx-1">Unblock</a>
+              {% endif %}
+            </td>
+            <td>{{d.phone}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+{% endblock body %}

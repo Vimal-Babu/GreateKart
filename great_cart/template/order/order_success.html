@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add a link to an external CSS file for custom styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap4 files -->
+    <title>Receipt</title>
+    <link rel="stylesheet" href="{% static 'path_to_bootstrap_css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Your existing HTML content here -->
+    <body>
+    
+    <section class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-13 ">
+                <div class="card mb-4 ml-3">
+                    <div class="card-header py-3 bg-primary">
+                        <h1 class="text-white mb-0 text-center" >Billing details</h1>
+                    </div>
+                    <div class="card-body p-4">
+                        {% for order in orders %}
+                        <div class="receipt-item">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="{{ order.product.image.url }}" class="img-fluid" alt="Product Image">
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <p class="text-muted mb-0"><h6>Order Status :</h6>{{ order.order_status }}</p>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <p class="text-muted mb-0 small"><h6>product Name :</h6>{{ order.product.product_name }}</p>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <p class="text-muted mb-0 small"><h6>Delivery Address:</h6></p> 
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <p class="text-muted mb-0 small">{{ order.delivery_address.address_line_1 }}<br>{{ order.delivery_address.city }}<br>{{ order.delivery_address.state }}, {{ order.delivery_address.Zipcode }},{{ order.delivery_address.landmark }}</p>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <p class="text-muted mb-0 small"><h6>Qty:</h6> {{ order.quantity }}</p>
+                                </div> 
+                                <div class="col-md-2 text-center">
+                                    <p class="text-muted mb-0 small">Total Price :{{ order.total_price }}</p>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    <h3 class="ml-3">Grand Total: ${{ grand_total }}</h3>
+                    <a href="{% url 'store' %}" style ="color: red" class="btn btn-light btn-block">CLICK HERE TO CONTINUE SHOPPING</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</body>
+</html>
