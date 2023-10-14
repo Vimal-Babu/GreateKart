@@ -13,9 +13,8 @@ from decouple import config
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
-import environ
-env = environ.Env()
-environ.Env.read_env()
+
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -88,12 +87,12 @@ WSGI_APPLICATION = 'great_cart.wsgi.application'
 
 DATABASES={
 'default':{
-    'ENGINE':env('ENGIN'),
-    'NAME':env('NAME'),
-    'USER':env('USER'),
-    'PASSWORD':env('PASSWORD'),
-    'HOST':env('HOST'),
-    'PORT':env('PORT'),
+    'ENGINE':config('ENGINE'),
+    'NAME':config('NAME'),
+    'USER':config('USER'),
+    'PASSWORD':config('PASSWORD'),
+    'HOST':config('HOST'),
+    'PORT':config('PORT'),
 }
 }
 
