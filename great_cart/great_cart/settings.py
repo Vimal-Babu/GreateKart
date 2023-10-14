@@ -13,7 +13,9 @@ from decouple import config
 from pathlib import Path
 import os
 from django.contrib.messages import constants as messages
-
+import environ
+env = environ.Env()
+environ.Env.read_env()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o)63(a8+u=)*#huw548(t&cd3v99c2@(i1ba%f_$3-afxin%rm'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -86,12 +88,12 @@ WSGI_APPLICATION = 'great_cart.wsgi.application'
 
 DATABASES={
 'default':{
-    'ENGINE':'django.db.backends.postgresql',
-    'NAME':'don',
-    'USER':'postgres',
-    'PASSWORD':'369',
-    'HOST':'localhost',
-    'PORT':'5433',
+    'ENGINE':env('ENGIN'),
+    'NAME':env('NAME'),
+    'USER':env('USER'),
+    'PASSWORD':env('PASSWORD'),
+    'HOST':env('HOST'),
+    'PORT':env('PORT'),
 }
 }
 
@@ -176,3 +178,6 @@ LOGIN_URL = 'login'  # Assuming 'login' is the name of your login URL pattern
 
 KEY = 'rzp_test_BESijuObTRn44L'
 SECRET = 'PSjXZ0MZC4Dd8LvaYxsg90zh'
+
+
+
