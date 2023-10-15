@@ -11,14 +11,13 @@ from twilio.rest import Client
 from django.conf import settings
 import random
 from decouple import config
-from pyotp import TOTP
 import secrets
-import pyotp
 import os
 from django.contrib.auth import get_user_model
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.hashers import make_password
 from twilio.base.exceptions import TwilioRestException
+from decouple import config
 from dotenv import load_dotenv
 import os
 from twilio.rest import Client
