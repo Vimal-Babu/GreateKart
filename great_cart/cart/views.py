@@ -174,7 +174,7 @@ def apply_coupon(request,total_price = 0):
 
 def place_order(request, address=0, total_price=0, context=None):
     total_price = request.session.get('total_price', 0)
-    print(total_price,'total price on the top of the place order function ')
+    print(total_price,'total price on session ')
     if request.method == 'POST':
         payment_method = request.POST.get('payment_method')
         address_id = request.POST.get('selected_address')
@@ -187,6 +187,15 @@ def place_order(request, address=0, total_price=0, context=None):
         
         if payment_method == "COD":
             print('cod fuction wortksssssssssssssss')
+            print(total_price,'total price efore the if function')
+            if total_price == 0:
+                print("if works")
+                cart_item = CartItem.objects.filter(user = request.user).order_by('id')
+                for cart in cart_item:
+                    total_price += cart.cart_price
+                print(total_price,'total price inside if and loop')
+            else:
+                pass
             for cart_item in cart_items:
                 order = Orders(
                     user=request.user,

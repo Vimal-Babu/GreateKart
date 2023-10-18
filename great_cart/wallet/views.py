@@ -3,12 +3,18 @@ from order.models import Orders
 from . models import Wallet
 from django.contrib.auth.decorators import login_required
 from decimal import Decimal
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 # Create your views here.
 
 @login_required
 def my_wallet(request):
     user = request.user
-    wallet = Wallet.objects.get(user_id = user )
+    try:
+        wallet = Wallet.objects.get(user_id = user )
+    except ObjectDoesNotExist:
+        messages.error(request,"sorry, noting on the wallet")
+        return redirect('home')
     return render(request,'wallet/my_wallet.html',{'wallet':wallet})
 
     

@@ -191,7 +191,7 @@
             alert("Payment successful!");
             var user_id = new URLSearchParams(window.location.search).get('user_id');
             // Include payment status as a parameter
-            window.location.href = '/cart/razorpay_payment_view/?user_id=' + user_id + '&payment_status=success';
+            window.location.href = '/cart/place_order/?user_id=' + user_id + '&payment_status=success';
         },
         "theme": {
             "color": "#3399cc"
